@@ -101,9 +101,15 @@ app.post('/api/audit', async (req, res) => {
 
     let chrome;
     try {
-      chrome = await chromeLauncher.launch({
-        chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu'],
-      });
+     chrome = await chromeLauncher.launch({
+  chromePath: process.env.CHROME_PATH || undefined,
+  chromeFlags: [
+    '--headless',
+    '--no-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-gpu'
+  ],
+});
 
       const lhOptions = {
         logLevel: 'error',
